@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import Team from '../Team';
 import Character from '../Character';
+import Bowerman from '../Bowerman';
+import Magician from '../Magician';
+import Daemon from '../Daemon';
 
 test('should return add character', () => {
   const character = new Character('John');
@@ -52,4 +55,21 @@ test('should return array', () => {
   ];
 
   expect(team.toArray()).toEqual(expected);
+});
+
+test('should return the characters one at a time', () => {
+  function received() {
+    const born = new Bowerman('Born');
+    const merlin = new Magician('Merlin');
+    const boogeyman = new Daemon('Boogeyman');
+
+    const team = new Team();
+    team.addAll(born, merlin, boogeyman);
+
+    for (const person of team) {
+      console.log(person);
+    }
+  }
+
+  expect(received()).toEqual(undefined);
 });

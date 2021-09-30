@@ -22,4 +22,20 @@ export default class Team {
     this.members.forEach((elem) => { array.push(elem); });
     return array;
   }
+
+  [Symbol.iterator]() {
+    let current = 0;
+    const member = this.toArray();
+    const last = member.length - 1;
+
+    return {
+      next() {
+        if (current <= last) {
+          return { done: false, value: member[current++] };
+        } else {
+          return { done: true, value: undefined };
+        }
+      },
+    };
+  }
 }
